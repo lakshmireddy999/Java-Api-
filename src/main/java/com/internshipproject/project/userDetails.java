@@ -8,30 +8,20 @@ import java.lang.*;
 import java.util.*;
 import org.springframework.web.bind.annotation.*;
 
-import lombok.*;
-@Data
-class user {
-    String id;
-    String firstName;
-    String lastName;
-    String age;
-    String timings;
-    String mobile;
-}
 
 @CrossOrigin
 @RestController
 public class userDetails {
 
     @GetMapping("/user/data")
-    public ArrayList<user> getData() {
-        ArrayList<user> ans= new ArrayList<>();
+    public ArrayList<User> getData() {
+        ArrayList<User> ans= new ArrayList<>();
         try {
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "password");
             Statement st = connect.createStatement();
             ResultSet result = st.executeQuery("select * from yoga");
             while (result.next()) {
-                user u1=new user();
+                User u1=new User();
                 u1.id=result.getString("id");
                 u1.firstName=result.getString("firstName");
                 u1.lastName=result.getString("LastName");

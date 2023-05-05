@@ -23,7 +23,7 @@ public class UpdateData {
                                 + "';");
 
             }
-            
+
             st.executeUpdate(
                     "insert into movie_list values('"
                             + m1.getRank()
