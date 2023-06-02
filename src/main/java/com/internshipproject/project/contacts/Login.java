@@ -11,30 +11,32 @@ import java.sql.Statement;
 @CrossOrigin
 public class Login {
     @RequestMapping(path = "contacts/login",consumes = "application/json", method = RequestMethod.POST)
-    public static LoginOutput login(@RequestBody LoginInput l1)
+    public static LoginOutput login(@RequestBody LoginInput request)
     {
-        LoginOutput out = new LoginOutput();
+        LoginOutput response = new LoginOutput();
         try
         {
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "password");
             Statement st = connect.createStatement();
 
-            ResultSet result = st.executeQuery("select * from contactLogin where userName='" + l1.getUserName() + "'");
-            if(result.wasNull())
+            ResultSet result = st.executeQuery("select * from contacts_login where user_name='" + request.getUser_name() + "'");
+            if(!result.next())
             {
-                out.error="Invalid userName or Password";
-                out.status="failed";
-                return out;
+                response.error="Invalid user_name or password";
+                response.status="failed";
+                return response;
             }
+            result = st.executeQuery("select * from contacts_login where user_name='" + request.getUser_name() + "'");
             while (result.next()) {
-                if(!result.getString("password").equals(l1.getPassword()))
+                if(!result.getString("password").equals(request.getPassword()))
                 {
-                    out.error="Invalid Password";
-                    out.status="failed";
-                    return out;
+                    response.error="Invalid Password";
+                    response.status="failed";
+                    return response;
                 }
                 else {
-                    out.status="Success";
+                    response.status="Success";
+                    response.user_id=result.getString("user_id");
 
                 }
             }
@@ -43,6 +45,6 @@ public class Login {
         {
             e.printStackTrace();
         }
-        return out;
+        return response;
     }
 }
