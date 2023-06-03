@@ -35,8 +35,8 @@ public class DeleteContact {
                 return response;
             }
 
-            st.executeUpdate("delete from contacts where first_name='"+ request.getFirst_name()+"';");
-             result = st.executeQuery("select * from contacts where first_name='" + request.getFirst_name() + "' and last_name='"+request.getLast_name()+"'");
+            st.executeUpdate("delete from contacts where first_name='"+ request.getFirst_name()+"'and last_name='"+request.getLast_name()+"';");
+             result = st.executeQuery("select * from contacts where first_name='" + request.getFirst_name() + "'");
             if(!result.next())
             {
                 response.setStatus("success");
