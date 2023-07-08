@@ -13,12 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 
-@Data
-class Response {
-    String status;
-    String error;
-}
-
 @RestController
 @CrossOrigin
 public class EditContact {
