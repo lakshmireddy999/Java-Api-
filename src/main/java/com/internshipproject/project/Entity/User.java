@@ -1,4 +1,4 @@
-package com.internshipproject.project.yoga;
+package com.internshipproject.project.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
