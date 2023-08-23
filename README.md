@@ -13,5 +13,5 @@ This project demonstrates basic CRUD (Create, Read, Update, Delete) operations u
 - Java
 - JDBC (Java Database Connectivity)
 - MySql
-- Springboot
-
+- SpringBoot
+- Spring Data Jpa
